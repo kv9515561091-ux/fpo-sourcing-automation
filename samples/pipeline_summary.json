@@ -1,0 +1,28 @@
+{
+  "week": "2026-10-05",
+  "responses": 54,
+  "fpos": 7,
+  "commodities": 10,
+  "matrix_rows": 54,
+  "week_rows": 25,
+  "expected_harvest_kg": 21049.0,
+  "grade_adjusted_kg": 15953.8,
+  "feasible_po_kg": 15696.3,
+  "po_value_inr": 384235.57,
+  "grade_to_feasible_conversion_pct": 74.6,
+  "decisions": {
+    "CONDITIONAL": 12,
+    "APPROVE": 9,
+    "REJECT": 3,
+    "DEFER": 1
+  },
+  "fpo_tiers": {
+    "FPO-CMK-04": "A \u2014 scale up",
+    "FPO-KOL-01": "B \u2014 maintain",
+    "FPO-TUM-02": "B \u2014 maintain",
+    "FPO-MDY-01": "B \u2014 maintain",
+    "FPO-MYS-03": "B \u2014 maintain",
+    "FPO-CBK-02": "B \u2014 maintain",
+    "FPO-HSR-01": "C \u2014 remediate"
+  }
+}

@@ -1,0 +1,8 @@
+fpo_id,fpo_name,district,responses,commodities,grade_a_share_pct,avg_grade_index,field_loss_pct,weighted_price_inr_kg,mandi_premium_pct,est_volume_kg,on_time_pct,graded_at_source_pct,fpo_score,tier,actions
+FPO-CMK-04,Chikmagalur Smallholders Collective,Chikmagalur,8,5,69.9,0.901,5.1,20.95,-0.24,9083.0,100.0,50.0,78.4,A — scale up,Offer a standing weekly order; add a second commodity.
+FPO-KOL-01,Kolar Taluk Growers Union,Kolar,8,6,79.4,0.925,4.5,27.16,35.8,9313.0,100.0,75.0,70.6,B — maintain,Maintain volume; invite to the next grading workshop.
+FPO-TUM-02,Tumkur Ridgeline Farmers,Tumkur,8,6,68.1,0.892,8.0,23.96,14.1,5386.0,100.0,50.0,68.6,B — maintain,Maintain volume; invite to the next grading workshop.
+FPO-MDY-01,Mandya Rafti Growers,Mandya,7,6,37.8,0.785,10.4,18.65,-1.84,8115.0,100.0,57.1,64.5,B — maintain,Maintain volume; invite to the next grading workshop.
+FPO-MYS-03,Mysuru Organic Growers,Mysuru,8,7,71.8,0.89,6.4,32.03,52.52,7490.0,87.5,62.5,62.0,B — maintain,Maintain volume; invite to the next grading workshop.
+FPO-CBK-02,Chikkaballapur Women Farmers Collective,Chikkaballapur,6,5,79.9,0.923,6.6,27.69,15.38,8721.0,50.0,33.3,60.5,B — maintain,Maintain volume; invite to the next grading workshop.
+FPO-HSR-01,Hosur Border Producers,Krishnagiri,9,8,46.4,0.82,9.7,29.13,32.41,10152.0,100.0,55.6,53.0,C — remediate,Handling intervention before any order increase — field loss too high.
