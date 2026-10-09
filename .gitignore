@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Apps Script
+*.gs.lock.json
+node_modules/
+.DS_Store
+Thumbs.db
