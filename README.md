@@ -238,3 +238,25 @@ MIT — see [LICENSE](LICENSE).
 
 Mandi benchmark rates in `Config.gs` reference publicly reported All-India
 figures for October 2026. All field responses in `samples/` are synthetic.
+
+---
+
+## Related projects
+
+Three companion projects on the same problem — how much of the gap between
+farm-gate cost and shelf price is recoverable in Indian F&V retail. They share
+a commodity master, a lane (Bengaluru PC → dark store, 62 km), and a set of
+grounded price and loss benchmarks. Each is a standalone repository; clone
+only the one you want.
+
+| project | question it answers | try it |
+| --- | --- | --- |
+| [mandi-margin-simulator](https://github.com/kv9515561091-ux/mandi-margin-simulator) | On any given day, is this line still worth buying? Node CLI, zero dependencies | `git clone https://github.com/kv9515561091-ux/mandi-margin-simulator.git && cd mandi-margin-simulator && node src/index.js simulate --days 30 --seed 99` |
+| [fv-shrinkage-dashboard](https://github.com/kv9515561091-ux/fv-shrinkage-dashboard) | Why is stock being written off, and would enforcing rotation fix it? A counterfactual re-simulation attributes **57.3% of expiry** to FEFO failure | `pip install -r requirements.txt && python scripts/generate_data.py && python scripts/analyze.py` |
+| [transit-spoilage-anova](https://github.com/kv9515561091-ux/transit-spoilage-anova) | Which handling method extends shelf life? Finds that onions must **not** be chilled — worth ₹28.6 lakh/year on one lane | `pip install -r requirements.txt && python analysis/generate_experiment.py && python analysis/anova_analysis.py` |
+
+The connection worth noting: this project flags a FPO's quote using an
+**independent** denominator — today's mandi rate, not a retail price derived
+from the quote itself — and the simulator it links to above carries that same
+rule. Both are deliberate refusals to let a number grade itself, and getting
+either wrong silently approves any price.
