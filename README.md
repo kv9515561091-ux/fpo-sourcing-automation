@@ -21,6 +21,24 @@ flowchart LR
 
 ---
 
+## Start here
+
+**You do not need a Google account to evaluate this.**
+
+```bash
+python samples/generate_samples.py            # -> sample outputs, no credentials
+python -m unittest discover -s samples        # 50 tests
+```
+
+Both run offline on **Python 3.9+** (tested on 3.13) and no third-party
+packages. This reproduces the PO planning matrix, FPO scorecard and pipeline
+summary exactly as the Apps Script would produce them, because
+`samples/generate_samples.py` is a line-for-line mirror of the commercial logic
+in `src/`.
+
+To run the real thing on Google infrastructure you need a Google account — see
+[Setup](#setup). It takes about five minutes.
+
 ## What it does
 
 A sourcing agent visits a Farmer Producer Organisation, checks the standing
@@ -111,27 +129,48 @@ attaches a fix, because the grade is a remediable problem.
 
 ---
 
-## Setup
+## Setup (requires a Google account)
 
-```bash
-# 1. Create the Apps Script project, then add the five .gs files from src/
-#    (Apps Script will not let you paste a file; paste each one's contents
-#    into its own file in the editor.)
+Everything here runs inside Google's Apps Script runtime. There is no local
+install and nothing to configure beyond two IDs.
 
-# 2. Run setupSpreadsheet() once. It prints the new spreadsheet's ID.
+1. Go to [script.google.com](https://script.google.com) and create a project.
 
-# 3. Put that ID in Config.gs as SPREADSHEET_ID.
-#    The form and its response sheet are separate Drive objects, so the
-#    script needs this explicitly and cannot use getActiveSpreadsheet().
+2. Add the five files from `src/` to the editor. Apps Script will not accept a
+   pasted file upload, so create one `.gs` per file and paste each one's
+   contents in:
 
-# 4. Run buildSurvey()       -> creates and publishes the form
-# 5. Run installTrigger()    -> installs form-bound onFormSubmit and asserts it
-# 6. Run rebuildPoMatrix()   -> seeds the derived tables
-```
+   | file | paste into a file named |
+   | --- | --- |
+   | `src/Config.gs` | `Config.gs` |
+   | `src/Utils.gs` | `Utils.gs` |
+   | `src/FormBuilder.gs` | `FormBuilder.gs` |
+   | `src/TriggerHandler.gs` | `TriggerHandler.gs` |
+   | `src/Aggregator.gs` | `Aggregator.gs` |
 
-Give the form's sharing to anyone with the link, responder access only. Share
-the tracking **spreadsheet** with sourcing staff only — the FPO scorecard is
-internal.
+   The names matter: the files reference each other's globals by name, and the
+   trigger installer looks up `onFormSubmit` by that exact name.
+
+3. Copy `appsscript.json` into **Project Settings → Show "appsscript.json"**.
+
+4. Run `setupSpreadsheet()` once from the editor. Google will ask to authorise;
+   approve it. The spreadsheet ID is printed to the execution log — open it via
+   **Executions** in the left panel.
+
+5. Put that ID into `Config.gs` as `SPREADSHEET_ID`, replacing the
+   `REPLACE_WITH_YOUR_SPREADSHEET_ID` placeholder. This is required because
+   the form and its response sheet are separate Drive objects, so the script
+   cannot use `getActiveSpreadsheet()`.
+
+6. Run, in order: `buildSurvey()` → `installTrigger()` → `rebuildPoMatrix()`.
+
+   `installTrigger()` installs the trigger from the **Form**, then reads it back
+   and asserts its event source. If you see `FATAL: ... must be installed from
+   the Form, not the Sheet` in the log, you installed it from the wrong
+   project — delete the trigger and re-run from the form's script editor.
+
+**Sharing.** Give the form link-access, responder only. Share the tracking
+**spreadsheet** with sourcing staff only — the FPO scorecard is internal.
 
 ---
 
@@ -185,6 +224,13 @@ outscore a consistent but dear one, which is intentional — the score is a
 screening tool, not a verdict.
 
 ---
+
+## Requirements
+
+| path | needs |
+| --- | --- |
+| `samples/` (offline mirror + tests) | Python 3.9+, standard library only — no pip install |
+| `src/` (the real pipeline) | A Google account. No pip, no Node, no local server. |
 
 ## Licence
 

@@ -1,3 +1,13 @@
-pandas==2.3.3
-numpy==2.3.4
-matplotlib==3.10.7
+# No third-party packages are required.
+#
+# samples/generate_samples.py and samples/test_sourcing_logic.py are pure
+# standard library -- csv, json, random, statistics, datetime, unittest. The
+# mirror of the Apps Script logic deliberately avoids pandas/numpy so that the
+# commercial logic can be reviewed and tested on any machine with a bare
+# Python install:
+#
+#     python samples/generate_samples.py
+#     python -m unittest discover -s samples
+#
+# The Apps Script in src/ has no Python dependencies at all, so there is
+# nothing to install there either.
